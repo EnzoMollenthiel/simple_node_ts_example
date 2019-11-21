@@ -3,6 +3,7 @@ import env from "../conf/env"
 
 const {dbName, type, host, port, user, password} = env.db
 
+// Iniatializing Sequelize object, pool of connections with database, using specific informations defined in "conf/env.ts" file
 const sequelize = new Sequelize(dbName, user, password, {
   host,
   port,
@@ -17,8 +18,10 @@ const sequelize = new Sequelize(dbName, user, password, {
   },
 });
 
+// Importing data models, now sequelize nows and using this models
 sequelize.import('./models/UserModel');
 
+// Sequelize authenticates with database
 sequelize
   .authenticate()
   .then(() => {
